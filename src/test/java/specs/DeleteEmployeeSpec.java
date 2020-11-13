@@ -1,9 +1,10 @@
 package specs;
 
 import helpers.EmployeeHelper;
+import helpers.Assert;
 import io.restassured.response.Response;
-import org.apache.http.HttpStatus;
 import org.testng.annotations.*;
+
 import static org.testng.Assert.assertEquals;
 
 public class DeleteEmployeeSpec {
@@ -26,7 +27,7 @@ public class DeleteEmployeeSpec {
     @Test
     public void testDeleteEmployee() {
         Response response = employeeHelper.deleteEmployee(employeeId);
-        assertEquals(response.getStatusCode( ), HttpStatus.SC_OK);
+        Assert.okStatusCode(response);
     }
 
     @Test

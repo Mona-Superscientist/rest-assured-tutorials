@@ -1,6 +1,7 @@
 package specs;
 
 import helpers.EmployeeHelper;
+import helpers.Assert;
 import io.restassured.response.Response;
 import org.apache.http.HttpStatus;
 import org.testng.annotations.*;
@@ -19,7 +20,8 @@ public class CreateEmployeeSpec {
     @Test
     public void testPOSTCreatePersonReturnsStatus200OK() {
         Response response = employeeHelper.createEmployee("Ahmed", "30", "3000");
-        assertEquals(response.getStatusCode( ), HttpStatus.SC_OK, "Created");
+        System.out.println(response.getBody().asString());
+        Assert.okStatusCode(response);
     }
 
     @Test

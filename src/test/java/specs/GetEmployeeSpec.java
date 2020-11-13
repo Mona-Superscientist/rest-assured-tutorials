@@ -1,8 +1,8 @@
 package specs;
 
 import helpers.EmployeeHelper;
+import helpers.Assert;
 import io.restassured.response.Response;
-import org.apache.http.HttpStatus;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
@@ -30,7 +30,7 @@ public class GetEmployeeSpec {
     @Test
     public void testGetEmployeeInfo() {
         Response response = employeeHelper.getOneEmployee(employeeId);
-        assertEquals(response.getStatusCode( ), HttpStatus.SC_OK, "Created");
+        Assert.okStatusCode(response);
         assertEquals(response.jsonPath().get("message"), "Successfully! Record has been fetched");
     }
 
