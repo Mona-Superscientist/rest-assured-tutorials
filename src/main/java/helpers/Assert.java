@@ -20,6 +20,6 @@ public class Assert {
     }
 
     public static void successResponseBody (Response response, Object expectedResponse) {
-
+         assertEquals(response.getBody().path("data").toString(), expectedResponse);
     }
 }
