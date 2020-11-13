@@ -2,11 +2,8 @@ package specs;
 
 import helpers.EmployeeHelper;
 import io.restassured.response.Response;
-import model.Employee;
 import org.apache.http.HttpStatus;
 import org.testng.annotations.*;
-import org.testng.Assert.*;
-
 import static org.testng.Assert.assertEquals;
 
 public class DeleteEmployeeSpec {
@@ -29,6 +26,12 @@ public class DeleteEmployeeSpec {
     @Test
     public void testDeleteEmployee() {
         Response response = employeeHelper.deleteEmployee(employeeId);
-        assertEquals(response.getStatusCode( ), HttpStatus.SC_OK, "Deleted");
+        assertEquals(response.getStatusCode( ), HttpStatus.SC_OK);
+    }
+
+    @Test
+    public void testDeleteEmployeeSuccessMessageContent() {
+        Response response = employeeHelper.deleteEmployee(employeeId);
+        assertEquals(response.jsonPath().get("message"), "Successfully! Record has been deleted");
     }
 }

@@ -6,7 +6,6 @@ import io.restassured.http.ContentType;
 import io.restassured.response.Response;
 import model.Employee;
 import constants.Endpoints;
-import org.apache.http.HttpStatus;
 import config.ConfigManager;
 
 public class EmployeeHelper {
@@ -24,6 +23,18 @@ public class EmployeeHelper {
                 .contentType(ContentType.JSON)
                 .get(Endpoints.GET_ALL_EMPLOYEES)
                 .andReturn( );
+
+        return response;
+    }
+
+    public Response getOneEmployee(Integer employeeId) {
+
+        Response response = RestAssured.given().contentType(ContentType.JSON)
+                .pathParam("id",employeeId)
+                .log().all()
+                .when()
+                .get(Endpoints.GET_EMPLOYEE_INFO)
+                .andReturn();
 
         return response;
     }
@@ -60,8 +71,6 @@ public class EmployeeHelper {
                 .andReturn();
 
         return response;
-
-
     }
 
 
